@@ -1,5 +1,5 @@
-const router = require("express").Router()
+const router = require('express').Router();
 
-router.use("/", require("./files"))
+router.use('/', require('./images'));
 
-module.exports = router
+module.exports = router;

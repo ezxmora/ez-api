@@ -1,12 +1,19 @@
 # ezloader
 
-Personal REST API for uploading files
+Multipurpose personal REST API
 
 ## How to upload a file
 
 ```
-    Soon
+Soon
 ```
+
+## TODO
+
+-   Add more methods
+-   Add database support
+-   Actually test if CORS works
+-   Update the ShareX file
 
 ## License
 

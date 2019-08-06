@@ -1,0 +1,13 @@
+﻿{
+  "Version": "12.4.1",
+  "Name": "api_rest_eriknaitor",
+  "DestinationType": "ImageUploader",
+  "RequestMethod": "POST",
+  "RequestURL": "http://localhost:1000/upload",
+  "Body": "MultipartFormData",
+  "Arguments": {
+    "file": "$filename$"
+  },
+  "FileFormName": "file",
+  "URL": "$json:$json:data.url$$"
+}
