@@ -1,13 +1,23 @@
 const Users = require('../models/Users');
-const whitelist = ['', ''];
+const jwt = require('jsonwebtoken');
 
 module.exports = {
+	// Signs the token
+	signToken: (user) => {
+		const userData = user.toObject();
+		delete userData.password;
+		delete userData.token;
+
+		return jwt.sign(userData, process.env.SECRET_JWT);
+	},
+
+	// Verifies a token
 	verifyToken: (req, res, next) => {
 		const token = req.get('token') || req.body.token || req.query.token;
 
 		if (!token) return res.json({ ok: false, message: 'No token has been specified' });
 
-		Files.findById(token, (err, user) => {
+		Users.findById(token, (err, user) => {
 			if (err)
 				return res.status(401).json({
 					ok: false,
@@ -19,13 +29,14 @@ module.exports = {
 					ok: false,
 					err: 'Not a valid token',
 				});
-		});
 
-		req.token = user;
-		next();
+			req.token = user;
+			next();
+		});
 	},
 
-	lanCORS: (req, res, next) => {
+	// Checks the remote address connection
+	/*lanCORS: (req, res, next) => {
 		const addreses = ['::1', '192.168.1.'];
 		if (addreses.indexOf(req.connection.remoteAddress) !== -1) {
 			next();
@@ -37,5 +48,5 @@ module.exports = {
 				},
 			});
 		}
-	},
+	},*/
 };
